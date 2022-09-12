@@ -174,7 +174,6 @@
                 // Check whether we can update the content.
                 if (last_item.c.length < content.length) {
                     // Update the last item.
-                    console.log('Last item updated triggered!');
                     history_info[history_info.length - 1].c = content;
                     //Flush the history info to local storage.
                     window.localStorage.setItem(sc_history_key, JSON.stringify(history_info));
@@ -200,7 +199,6 @@
         }
         //Check whether the length is changed or not.
         if(last_sc_length === history_info.length) {
-            console.log('Arrived here?!');
             //Just update the latest child node.
             let sc_latest_item = sc_area.firstElementChild;
             sc_latest_item.children[1].innerHTML = content;
