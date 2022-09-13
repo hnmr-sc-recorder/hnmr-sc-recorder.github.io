@@ -109,6 +109,7 @@
     <script type="text/javascript" src="decode.js"></script>
 </head>
 <body>
+<!--<h1>花丸はれる配信ルームSCレコーダー</h1>-->
 <h1>花丸はれる配信ルームSCレコーダー</h1>
 <div>質問/ご連絡 ▶ Saki Tojo&lt;<a href="mailto:saki.tojo@gmail.com">saki.tojo@gmail.com</a>&gt;</div>
 <div id="control-panel">
@@ -154,11 +155,11 @@
         return [
             '<div class="sc-message '+color_level+'">',
             '<div class="sc-header">',
-                '<div class="sc-name">'+name+'</div>',
-                '<div class="sc-amount">'+price_text+'</div>',
+            '<div class="sc-name">'+name+'</div>',
+            '<div class="sc-amount">'+price_text+'</div>',
             '</div>',
             html_content,
-        '</div>'].join('');
+            '</div>'].join('');
     }
 
     function sc_encode(name, price_text, content, color_level) {
@@ -382,13 +383,15 @@
             if (ws_heartbeat != null){
                 clearInterval(ws_heartbeat);    //Stop heartbeat.
             }
-            setTimeout(ws, 4000);    //Retry after 4 seconds.
+            console.log('Connection closed, retry after 1 seconds...');
+            setTimeout(function() {wss_bilibili(room_id)}, 1000);    //Retry after 1 seconds.
         }
 
         ws.onerror = function(e){
             //TODO: Show the error in the system message.
             console.log(e);
         }
+
     }
 
     function listen_bilibili(room_id) {
@@ -405,7 +408,6 @@
     // Restore the previous SC data.
     sc_restore_info();
     // Start listening live room.
-    // Hanamaru's room.
     listen_bilibili(21547895);
 
 </script>

@@ -384,13 +384,14 @@
                 clearInterval(ws_heartbeat);    //Stop heartbeat.
             }
             console.log('Connection closed, retry after 1 seconds...');
-            setTimeout(ws, 1000);    //Retry after 1 seconds.
+            setTimeout(function() {wss_bilibili(room_id)}, 1000);    //Retry after 1 seconds.
         }
 
         ws.onerror = function(e){
             //TODO: Show the error in the system message.
             console.log(e);
         }
+
     }
 
     function listen_bilibili(room_id) {
